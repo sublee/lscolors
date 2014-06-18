@@ -11,8 +11,6 @@ LSCOLORS Generator
 
   <link type="text/css" href="lscolors.css" rel="stylesheet" />
   <link id="main-css" rel="stylesheet" type="text/css" media="all" href="/styles/main.css" />
-  <script type="text/javascript" src="lscolors.js">
-  </script>
 </head>
 
 <body onload="makePreview()">
@@ -93,15 +91,15 @@ LSCOLORS Generator
     </td>
     <td>
       <div class="colorPicker">
-        <img alt="Black" width="20" height="20" src="black.png" onclick="changeColor('a',0)" />
-        <img alt="Red" width="20" height="20" src="red.png" onclick="changeColor('b',0)" />
-        <img alt="Green" width="20" height="20" src="green.png" onclick="changeColor('c',0)" />
-        <img alt="Brown" width="20" height="20" src="brown.png" onclick="changeColor('d',0)" />
-        <img alt="Blue" width="20" height="20" src="blue.png" onclick="changeColor('e',0)" />
-        <img alt="Magenta" width="20" height="20" src="magenta.png" onclick="changeColor('f',0)" />
-        <img alt="Cyan" width="20" height="20" src="cyan.png" onclick="changeColor('g',0)" />
-        <img alt="Gray" width="20" height="20" src="gray.png" onclick="changeColor('h',0)" />
-        <img alt="Default" width="20" height="20" src="default.png" onclick="changeColor('x',0)" />
+        <div class="color" data-color="a0"></div>
+        <div class="color" data-color="b0"></div>
+        <div class="color" data-color="c0"></div>
+        <div class="color" data-color="d0"></div>
+        <div class="color" data-color="e0"></div>
+        <div class="color" data-color="f0"></div>
+        <div class="color" data-color="g0"></div>
+        <div class="color" data-color="h0"></div>
+        <div class="color" data-color="x0"></div>
       </div>
     </td>
     <td>
@@ -118,15 +116,15 @@ LSCOLORS Generator
     </td>
     <td>
       <div class="colorPicker">
-        <img alt="Black" width="20" height="20" src="black.png" onclick="changeColor('a',1)" />
-        <img alt="Red" width="20" height="20" src="red.png" onclick="changeColor('b',1)" />
-        <img alt="Green" width="20" height="20" src="green.png" onclick="changeColor('c',1)" />
-        <img alt="Brown" width="20" height="20" src="brown.png" onclick="changeColor('d',1)" />
-        <img alt="Blue" width="20" height="20" src="blue.png" onclick="changeColor('e',1)" />
-        <img alt="Magenta" width="20" height="20" src="magenta.png" onclick="changeColor('f',1)" />
-        <img alt="Cyan" width="20" height="20" src="cyan.png" onclick="changeColor('g',1)" />
-        <img alt="Gray" width="20" height="20" src="gray.png" onclick="changeColor('h',1)" />
-        <img alt="Default" width="20" height="20" src="default.png" onclick="changeColor('x',1)" />
+        <div class="color" data-color="a1"></div>
+        <div class="color" data-color="b1"></div>
+        <div class="color" data-color="c1"></div>
+        <div class="color" data-color="d1"></div>
+        <div class="color" data-color="e1"></div>
+        <div class="color" data-color="f1"></div>
+        <div class="color" data-color="g1"></div>
+        <div class="color" data-color="h1"></div>
+        <div class="color" data-color="x1"></div>
       </div>
     </td>
     <td>
@@ -182,5 +180,6 @@ blah:~/color_test root# <span id="cursor"> </span>
   <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub" /></a>
 </p>
 </div>
+<script type="text/javascript" src="lscolors.js"></script>
 </body>
 </html>

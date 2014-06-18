@@ -8,32 +8,32 @@
 var currentColorIndex = 0;
 var indexLength = 22;
 var colors = new Array('e','x','f','x','c','x','d','x','b','x','e','g','e','d','a','b','a','g','a','c','a','d');
-var divIDs = new Array("directory","system_link","socket","pipe","executable","block_special","char_special","exe_setuid","exe_setgid","dir_writeothers_sticky","dir_writeothers_nosticky");
+var divIDs = new Array('directory','system_link','socket','pipe','executable','block_special','char_special','exe_setuid','exe_setgid','dir_writeothers_sticky','dir_writeothers_nosticky');
 
 
-//Update the "Bold" check boxes and keep track of which type of file we're changing
+//Update the 'Bold' check boxes and keep track of which type of file we're changing
 function updateColorIndex()
 {
     var isGroundBold;
 
-    currentColorIndex = document.getElementById("currentColorIndex").value * 2;
+    currentColorIndex = document.getElementById('currentColorIndex').value * 2;
 
     if(isBold(currentColorIndex))
     {
-        document.getElementById("isForegroundBold").checked = true;
+        document.getElementById('isForegroundBold').checked = true;
     }
     else
     {
-        document.getElementById("isForegroundBold").checked = false;
+        document.getElementById('isForegroundBold').checked = false;
     }
 
     if(isBold(currentColorIndex + 1))
     {
-        document.getElementById("isBackgroundBold").checked = true;
+        document.getElementById('isBackgroundBold').checked = true;
     }
     else
     {
-        document.getElementById("isBackgroundBold").checked = false;
+        document.getElementById('isBackgroundBold').checked = false;
     }
 
 }
@@ -80,14 +80,7 @@ function unBoldText(isBackground)
 //Returns true if a letter is upper case
 function isBold(index)
 {
-    if(colors[index] == colors[index].toUpperCase())
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
+    return colors[index] && colors[index] == colors[index].toUpperCase();
 }
 
 
@@ -95,17 +88,17 @@ function isBold(index)
 //Updates the string in the input box
 function updateColorString()
 {
-    var colorString = "";
+    var colorString = '';
 
     for(var i = 0; i < indexLength; i++)
     {
         colorString = colorString + colors[i];
     }
 
-    document.getElementById("colorStringBSD").value=colorString;
+    document.getElementById('colorStringBSD').value=colorString;
 
     var colorStringLinux = translateColorToLinux(colorString);
-    document.getElementById("colorStringLinux").value=colorStringLinux;
+    document.getElementById('colorStringLinux').value=colorStringLinux;
 
     makePreview();
 }
@@ -122,10 +115,10 @@ function makePreview()
     var divFontWeight;
     var i = 0;
 
-    var colorString = document.getElementById("colorStringBSD").value;
+    var colorString = document.getElementById('colorStringBSD').value;
 
     var colorStringLinux = translateColorToLinux(colorString);
-    document.getElementById("colorStringLinux").value=colorStringLinux;
+    document.getElementById('colorStringLinux').value=colorStringLinux;
 
     for (i = 0; i < indexLength; i++)
     {
@@ -138,64 +131,55 @@ function makePreview()
 
         if(isBold(i))
         {
-            divFontWeight.style.fontWeight = "bold";
+            divFontWeight.style.fontWeight = 'bold';
         }
         else
         {
-            divFontWeight.style.fontWeight = "normal";   
+            divFontWeight.style.fontWeight = 'normal';
         }
 
-        color = translateColor(colors[i]);
+        color = translateColor(colors[i], isBold(i));
         divColor = document.getElementById(divIDs[i/2]);
         divColor.style.color = color;
 
-        backgroundColor = translateColor(colors[i + 1]);
+        backgroundColor = translateColor(colors[i + 1], isBold(i + i));
         divBackground = document.getElementById(divIDs[i/2]);
         divBackground.style.backgroundColor = backgroundColor;
     }
 }
 
 
-function translateColor(color)
+function translateColor(color, bold)
 {
-    if(color == 'a')
+    var i = color;
+    if (bold)
     {
-        return "black";
+        i = i.toUpperCase();
     }
-    else if(color == 'b')
-    {
-        return "red";
-    }
-    else if(color == 'c')
-    {
-        return "green";
-    }
-    else if(color == 'd')
-    {
-        return "brown";
-    }
-    else if(color == 'e')
-    {
-        return "blue";
-    }
-    else if(color == 'f')
-    {
-        return "magenta";
-    }
-    else if(color == 'g')
-    {
-        return "cyan";
-    }
-    else if(color == 'h')
-    {
-        return "#cccccc";
-    }
+    return {
+        'a': '#002b36',  // black
+        'A': '#002b36',  // bold black
+        'b': '#dc322f',  // red
+        'B': '#cb4b16',  // bold red
+        'c': '#859900',  // green
+        'C': '#859900',  // bold green
+        'd': '#b58900',  // yellow
+        'D': '#b58900',  // bold yellow
+        'e': '#268bd2',  // blue
+        'E': '#268bd2',  // bold blue
+        'f': '#d33682',  // magenta
+        'F': '#6c71c4',  // bold magenta
+        'g': '#2aa198',  // cyan
+        'G': '#2aa198',  // bold cyan
+        'h': '#eee8d5',  // white
+        'H': '#fdf6e3'   // bold white
+    }[i] || null;
 }
 
 function translateColorToLinux(colorString)
 {
-    var color = "";
-    var linuxColorString = "";
+    var color = '';
+    var linuxColorString = '';
 
     for (var i = 0; i < colorString.length; i++)
     {
@@ -203,37 +187,37 @@ function translateColorToLinux(colorString)
 
         switch(i) {
             case 0:
-                linuxColorString += "di="; //directory
+                linuxColorString += 'di='; //directory
             break;
             case 2:
-                linuxColorString += "ln="; //symlink
+                linuxColorString += 'ln='; //symlink
             break;
             case 4:
-                linuxColorString += "so="; //socket
+                linuxColorString += 'so='; //socket
             break;
             case 6:
-                linuxColorString += "pi="; //pipe
+                linuxColorString += 'pi='; //pipe
             break;
             case 8:
-                linuxColorString += "ex="; //executable
+                linuxColorString += 'ex='; //executable
             break;
             case 10:
-                linuxColorString += "bd="; //block device
+                linuxColorString += 'bd='; //block device
             break;
             case 12:
-                linuxColorString += "cd="; //character device
+                linuxColorString += 'cd='; //character device
             break;
             case 14:
-                linuxColorString += "su="; //setuid
+                linuxColorString += 'su='; //setuid
             break;
             case 16:
-                linuxColorString += "sg="; //setgid
+                linuxColorString += 'sg='; //setgid
             break;
             case 18:
-                linuxColorString += "tw="; //other writable sticky
+                linuxColorString += 'tw='; //other writable sticky
             break;
             case 20:
-                linuxColorString += "ow="; //other writable non-sticky
+                linuxColorString += 'ow='; //other writable non-sticky
             break;
         }
 
@@ -241,48 +225,70 @@ function translateColorToLinux(colorString)
         if (i % 2 === 0) {
             //If bold, add bold thingy
             if(color == color.toUpperCase())
-                linuxColorString += "1;";
+                linuxColorString += '1;';
 
             if(color == 'a' || color == 'x')
-                linuxColorString += "0";    //default (black)
+                linuxColorString += '0';    //default (black)
             else if(color == 'b')
-                linuxColorString += "31";   //red
+                linuxColorString += '31';   //red
             else if(color == 'c')
-                linuxColorString += "32";   //green
+                linuxColorString += '32';   //green
             else if(color == 'd')
-                linuxColorString += "33";   //orange/brown
+                linuxColorString += '33';   //orange/brown
             else if(color == 'e')
-                linuxColorString += "34";   //blue
+                linuxColorString += '34';   //blue
             else if(color == 'f')
-                linuxColorString += "35";   //magenta
+                linuxColorString += '35';   //magenta
             else if(color == 'g')
-                linuxColorString += "36";   //cyan
+                linuxColorString += '36';   //cyan
             else if(color == 'h')
-                linuxColorString += "37";   //grey
+                linuxColorString += '37';   //grey
         }
         else {
-            linuxColorString += ";";
+            linuxColorString += ';';
 
             if(color == 'a' || color == 'x')
-                linuxColorString += "40";    //default (black) background
+                linuxColorString += '40';    //default (black) background
             else if(color == 'b')
-                linuxColorString += "41";   //red background
+                linuxColorString += '41';   //red background
             else if(color == 'c')
-                linuxColorString += "42";   //green background
+                linuxColorString += '42';   //green background
             else if(color == 'd')
-                linuxColorString += "43";   //orange/brown background
+                linuxColorString += '43';   //orange/brown background
             else if(color == 'e')
-                linuxColorString += "44";   //blue background
+                linuxColorString += '44';   //blue background
             else if(color == 'f')
-                linuxColorString += "45";   //magenta background
+                linuxColorString += '45';   //magenta background
             else if(color == 'g')
-                linuxColorString += "46";   //cyan background
+                linuxColorString += '46';   //cyan background
             else if(color == 'h')
-                linuxColorString += "47";   //grey background
+                linuxColorString += '47';   //grey background
 
-            linuxColorString += ":";
+            linuxColorString += ':';
         }
     }
 
     return linuxColorString;
+}
+
+
+var colorElements = document.getElementsByClassName('color');
+for (var i = 0; i < colorElements.length; ++i)
+{
+    var colorElement = colorElements[i];
+    var colorData = colorElement.getAttribute('data-color');
+    var color = translateColor(colorData[0]);
+    if (color)
+    {
+        colorElement.style.backgroundColor = color;
+    }
+    else
+    {
+        colorElement.style.outlineWidth = '1px';
+    }
+    colorElement.onclick = function()
+    {
+        var colorData = this.getAttribute('data-color');
+        changeColor(colorData[0], Number(colorData[1]));
+    };
 }

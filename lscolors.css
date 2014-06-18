@@ -1,20 +1,32 @@
-div.fixed
+body {
+    background: #002b36;
+    color: #839496;
+    font-size: 16px;
+}
+
+.color {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    outline: 0 solid #fff;
+}
+
+.fixed
 {
     border-width: 0px;
-    font-family: Menlo, "Deja Vu Sans Mono", Consolas, monospace;
-    font-size: 10pt;
+    font-family: "Deja Vu Sans Mono", Consolas, monospace;
     padding: 0px;
     white-space: pre;
 }
 
-div.graybox
+.graybox
 {
     padding: 2px;
     height: 30px;
     vertical-align: middle;
 }
 
-div.colorPicker
+.colorPicker
 {
     padding: 2px;
     height: 30px;
@@ -22,15 +34,15 @@ div.colorPicker
     vertical-align: middle;
 }
 
-div.ls
+.ls
 {
-    font-family: Menlo, "Deja Vu Sans Mono", Consolas, monospace;
+    font-family: "Deja Vu Sans Mono", Consolas, monospace;
     font-weight: normal;
     white-space: pre;
 }
 
-span#cursor
+#cursor
 {
-    font-family: Menlo, "Deja Vu Sans Mono", Consolas, monospace;
+    font-family: "Deja Vu Sans Mono", Consolas, monospace;
     white-space: pre;
 }
